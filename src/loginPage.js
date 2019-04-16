@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
-import { AppRegistry, Platform, StyleSheet, Text, View, TextInput } from 'react-native';
+import { AppRegistry, Platform, StyleSheet, Text, View, TextInput, Alert } from 'react-native';
 import { Button } from 'react-native-elements'
 
 
 
 export default class LoginPage extends Component {
+
+  constructor(props){
+
+      super(props)
+      this.state={
+        TextInputValue:''
+      , TextInputValue2: ''
+      }
+
+  }
+
+printDetails = () =>{
+    const{TextInputValue}=this.state;
+    Alert.alert(TextInputValue)
+}
+
+printDetails2 = () =>{
+    const{TextInputValue2}=this.state;
+    Alert.alert(TextInputValue2)
+}
 
 
     render() {
@@ -24,6 +44,7 @@ export default class LoginPage extends Component {
                     keyboardType='email-address'
                     placeholder='Enter email address'
 
+                   onChangeText={TextInputValue=>this.setState({TextInputValue})}
                 />
 
                 <TextInput style={{
@@ -38,13 +59,18 @@ export default class LoginPage extends Component {
                     secureTextEntry={true}
                     caretHidden={true}
 
+                     onChangeText={TextInputValue2=>this.setState({TextInputValue2})}
+
                 />
 
 
 
                 <Button buttonStyle={styles.buttonContainer}
-                    onPress={() => this.props.navigation.navigate('HomePage')}
-                    title="Continue"
+                  //  onPress={() => this.props.navigation.navigate('HomePage')}
+
+                   onPress={this.printDetails2}
+
+                   title='continue'
                     color="#007FEB"
                     accessibilityLabel="Buy Some Books!"
                 />
